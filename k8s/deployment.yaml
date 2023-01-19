@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-basic-k8s-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-basic-k8s
+  template:
+    metadata:
+      labels:
+        app: flask-basic-k8s
+    spec:
+      containers:
+        - name: flask-basic-k8s
+          image: docker.io/nightmar39/flask-basic-k8s:e03addb
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
